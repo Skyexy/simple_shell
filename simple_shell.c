@@ -1,14 +1,14 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
+#include "main.h"
 
-int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
+int main(void)
 {
         int int_mode;
-        char **toks = malloc(sizeof(char *) * 1024);
-        char *token;
+        size_t buff = 1024;
+        size_t get;
         int counter = 0;
+        char **toks = malloc(sizeof(char *) * 1024);
+        char *input = malloc(sizeof(char) * buff);
+        char *token = malloc(sizeof(char) * buff);
 
         while (int_mode != EOF)
         {
@@ -17,7 +17,8 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
                 {
                         write(STDOUT_FILENO, "#cisfun$" , 13);
                 }
-                token = strtok(*av, " ");
+                get = getline(&input, &buff, stdin);
+                token = strtok(input, " ");
                 while (token != NULL)
                 {
                         toks[counter] = strdup(token);
