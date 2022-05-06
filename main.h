@@ -1,4 +1,9 @@
 #ifndef MAIN_H
-#defin MAIN_H
+#define MAIN_H
 
-#endif
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+
+#endif /* MAIN_H */
