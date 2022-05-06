@@ -13,5 +13,5 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
                         write(STDOUT_FILENO, "#cisfun$" , 13);
                 }
         }
-        e
+        return (0);
 }
