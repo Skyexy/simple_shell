@@ -1,4 +1,4 @@
-#include "mai.h"
+#include "main.h"
 
 size_t _getline(char *buff, size_t n, int stream)
 {
