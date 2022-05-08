@@ -30,7 +30,7 @@ int main(void)
                 son = fork();
                 if(!son)
                 {
-                        if (execve(*toks, toks, NULL) == -1)
+                        if (execve("/bin/ls", toks, NULL) == -1)
                         {
                                 perror("Error");
                         }
