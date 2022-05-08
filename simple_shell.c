@@ -26,7 +26,7 @@ int main(void)
                         counter++;
                 }
                 toks[counter] = token;
-                t = execve(toks[0], toks, NULL);
+                execve(toks[0], toks, NULL);
         }
         return (0);
 }
