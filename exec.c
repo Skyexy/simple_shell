@@ -3,7 +3,9 @@
 
 int main(void)
 {
-    char **argv = {"/bin/ls", NULL};
+    char **argv = malloc(sizeof(char *) * 30);
+    argv[0] = "/bin/ls";
+    argv[1] = NULL;
 
     printf("Before execve\n");
     if (execve(argv[0], argv, NULL) == -1)
