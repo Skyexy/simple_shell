@@ -4,7 +4,6 @@ int main(void)
 {
         int int_mode;
         size_t buff = 1024;
-        size_t get;
         int counter = 0;
         pid_t pid;
         int status;
