@@ -5,8 +5,7 @@ int main(void)
         int int_mode;
         size_t buff = 1024;
         int counter = 0;
-        int status;
-        char *toks[buff];
+        char **toks= malloc(sizeof(char *) * buff);
         char *input = malloc(sizeof(char) * buff);
         char *token = malloc(sizeof(char) * buff);
         
@@ -15,7 +14,7 @@ int main(void)
                 int_mode = isatty(STDIN_FILENO);
                 if (int_mode == 1)
                 {
-                        write(STDOUT_FILENO, "#cisfun$ " , 8);
+                        write(STDOUT_FILENO, "#cisfun$ " , 9);
                 }
                 getline(&input, &buff, stdin);
                 token = strtok(input, " ");
