@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    char *argv[] = {"/bin/ls", NULL};
+    char **argv = {"/bin/ls", NULL};
 
     printf("Before execve\n");
     if (execve(argv[0], argv, NULL) == -1)
