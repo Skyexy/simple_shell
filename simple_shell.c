@@ -4,13 +4,11 @@ int main(void)
 {
         int int_mode;
         size_t buff = 1024;
-        size_t get;
         int counter = 0;
         int status;
         char **toks = malloc(sizeof(char *) * 1024);
         char *input = malloc(sizeof(char) * buff);
         char *token = malloc(sizeof(char) * buff);
-        size_t t;
         
         while (int_mode != EOF)
         {
@@ -19,7 +17,7 @@ int main(void)
                 {
                         write(STDOUT_FILENO, "#cisfun$" , 13);
                 }
-                get = getline(&input, &buff, stdin);
+                getline(&input, &buff, stdin);
                 token = strtok(input, " ");
                 while (token != NULL)
                 {
