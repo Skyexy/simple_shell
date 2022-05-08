@@ -25,8 +25,8 @@ int main(void)
                         counter++;
                 }
                 toks[counter] = token;
-                if (execve(toks[0], toks, NULL) == -1)
-                 {
+                if (execve(*toks, toks, NULL) == -1)
+                {
                         perror("Error:");
                 }
         }
