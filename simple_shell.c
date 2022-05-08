@@ -4,7 +4,6 @@ int main(void)
 {
         int int_mode;
         size_t buff = 1024;
-        size_t get;
         int counter = 0;
         pid_t pid;
         int status;
@@ -20,7 +19,7 @@ int main(void)
                 {
                         write(STDOUT_FILENO, "#cisfun$" , 13);
                 }
-                get = getline(&input, &buff, stdin);
+                getline(&input, &buff, stdin);
                 token = strtok(input, " ");
                 while (token != NULL)
                 {
