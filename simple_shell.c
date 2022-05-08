@@ -5,7 +5,7 @@ int main(void)
         int int_mode;
         size_t buff = 1024;
         int counter = 0;
-        char **toks= malloc(sizeof(char *) * buff);
+        char *toks[] = {};
         char *input = malloc(sizeof(char) * buff);
         char *token = malloc(sizeof(char) * buff);
         
