@@ -7,19 +7,24 @@ int main(void)
         char **argv = malloc(sizeof(char *) * 512);
         char *input = malloc(sizeof(char) * 512);
         char *token = NULL;
-        int i;
+        int counter;
+        pid_t son;
         char *current = malloc(sizeof(char) * 512);
 
         while (int_mode != EOF)
         {
-                write(1, getcwd(current, 1204), 120);
+                int_mode = isatty(STDIN_FILENO);
+                if (int_mode == 1)
+                {
+                        write(STDOUT_FILENO, getcwd(current, 120), 120)
+                }
                 getline(&input,&buff,stdin);
                 if (*input == '\n')
                 {
                         continue;
                 }
                 token = strtok(input, " ");
-                int counter = 0;
+                counter = 0;
                 while (token != NULL)
                 {
                         argv[counter] = _strdunp(token);
@@ -27,7 +32,7 @@ int main(void)
                         counter++;
                 }
                 argv[counter] = NULL;
-                int son = fork();
+                son = fork();
                 if (son == -1)
                 {
                         perror("Error:");
