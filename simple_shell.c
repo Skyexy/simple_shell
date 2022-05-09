@@ -2,43 +2,53 @@
 
 int main(void)
 {
-       int int_mode;
-        size_t buff = 1024;
-        int counter = 0;
-        char *toks[] = {"NULL"};
-        char *input = malloc(sizeof(char) * buff);
-        char *token = malloc(sizeof(char) * buff);
-        pid_t son;
-        
+        int int_mode;
+        size_t buff = 0;
+        char **argv = malloc(sizeof(char *) * 512);
+        char *input = malloc(sizeof(char) * 512);
+        char *token = NULL;
+        int i;
+        char *current = malloc(sizeof(char) * 512);
+
         while (int_mode != EOF)
         {
-                int_mode = isatty(STDIN_FILENO);
-                if (int_mode == 1)
+                write(1, getcwd(current, 1204), 120);
+                getline(&input,&buff,stdin);
+                if (*input == '\n')
                 {
-                        write(STDOUT_FILENO, "#cisfun$ " , 9);
+                        continue;
                 }
-                getline(&input, &buff, stdin);
                 token = strtok(input, " ");
+                int counter = 0;
                 while (token != NULL)
                 {
-                        toks[counter] = strdup(token);
+                        argv[counter] = _strdunp(token);
                         token = strtok(NULL, " ");
                         counter++;
                 }
-                toks[counter] = token;
-                printf("%s", *toks);
-                son = fork();
+                argv[counter] = NULL;
+                int son = fork();
+                if (son == -1)
+                {
+                        perror("Error:");
+                        return (1);
+                }
                 if(!son)
                 {
-                        if (execve("/bin/ls", toks, NULL) == -1)
+                        if (execve(argv[0], argv, NULL) == -1)
                         {
-                                perror("Error");
+                                getcwd(current, 1204);
+                                perror(current);
                         }
                 }
                 else
                 {
-                        wait(0);
+                        wait(NULL);
                 }
         }
+        free(input);
+        free(token);
+        free(argv);
+        free(current);
         return (0);
 }
