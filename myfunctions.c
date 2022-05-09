@@ -62,7 +62,7 @@ char *_strdunp(char *lo)
 {
 	int i;
 
-	for(i=0; i<strlen(lo); i++)
+	for(i=0; i<_strlen(lo); i++)
 	{
 		if(lo[i]=='\n')
 		{      
