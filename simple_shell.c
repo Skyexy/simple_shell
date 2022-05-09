@@ -16,7 +16,7 @@ int main(void)
                 int_mode = isatty(STDIN_FILENO);
                 if (int_mode == 1)
                 {
-                        write(STDOUT_FILENO, getcwd(current, 120), 120)
+                        write(STDOUT_FILENO, getcwd(current, 120), 120);
                 }
                 getline(&input,&buff,stdin);
                 if (*input == '\n')
