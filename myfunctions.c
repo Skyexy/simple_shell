@@ -1,8 +1,8 @@
 #include "main.h"
 
-int _strlen(char *s)
-char *_strncat(char *dest, char *src, int n)
-char *_strdunp(char *lo)
+int _strlen(char *s);
+char *_strncat(char *dest, char *src, int n);
+char *_strdunp(char *lo);
 
 /**
  * _strlen -  function that returns the length of a string
