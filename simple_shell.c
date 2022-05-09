@@ -1,23 +1,5 @@
 #include "main.h"
 
-/**
- * _strdunp - changes /n to /0
- * Return: lo
- * @lo: the lead string
- */
-char *_strdunp(char *lo)
-{
-	int i;
-
-	for(i=0; i<_strlen(lo); i++)
-	{
-		if(lo[i]=='\n')
-		{      
-			lo[i]='\0';
-		}
-	}
-	return (lo);
-}
 
 int main(void)
 {
