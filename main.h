@@ -6,22 +6,30 @@
 #include <string.h>
 #include <sys/wait.h>
 
-typedef struct ali {
-     char *name;
-     int (*func)(void);
+typedef struct aliases {
+char *alias_name;
+char *real_name;
 } alias;
-alias aliases[] = {
-     {"name", function},
-     {NULL, NULL}
+
+alias my_aliases[] = {
+{"ls", "ls --color=auto"},
+{"ll", "ls -alF"},
+{"la", "ls -A"},
+{NULL, NULL},
 };
-typedef struct bin{
-     char *name;
-     int (*func)(void);
-} builtin;
-builtin builtins[] = {
-     {"exit", exit_function},
-     {"env", env_function},
-     {NULL, NULL}
+
+
+typedef struct my_builtins
+{
+char *name;
+int (*func)(char **);
+} my_builtins;
+
+my_builtins builtins[] = {
+     {"exit", &_exi},
+     {"env", &env},
+     {"cd", &cd},
+     {NULL, NULL},
 };
 
 int _strlen(char *s);
