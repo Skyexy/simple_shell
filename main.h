@@ -32,8 +32,16 @@ my_builtins builtins[] = {
      {NULL, NULL},
 };
 
-int _strlen(char *s);
-char *_strncat(char *dest, char *src, int n);
-char *_strdunp(char *lo);
+int check(char *s);
+void comma(char *user_input);
+char **divd(char *user_input);
+char** ali(char **argv);
+char* exv(char **argv);
+void execute(char** argv);
+char *_getpath(void);
+int cd(char **argv);
+int env(char **argv);
+int _exi(char **argv);
+int comp(char **argv, char *sig);
 
 #endif /* MAIN_H */
