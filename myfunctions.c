@@ -225,15 +225,17 @@ int check(char *s, char sign)
 
 int _aliass(char *user_input)
 {
-        if(strncmp(user_input, "alias ",6) == 0);
-        char *s = malloc(sizeof(char) * BUFFER_LEN);
-        char *y = malloc(sizeof(char) * BUFFER_LEN);
-        char *argv[BUFFER_LEN];
-        char *t = t = "'";
-        int x = 0;
-        int g;
-        int d = 0;
-        char *token;
+     char *s = malloc(sizeof(char) * BUFFER_LEN);
+     char *y = malloc(sizeof(char) * BUFFER_LEN);
+     char *argv[BUFFER_LEN];
+     char *t = t = "'";
+     int x = 0;
+     int g;
+     int d = 0;
+     char *token;
+     int argc;
+     int z;
+
     if (strncmp(user_input, "alias ",6) == 0)
     {
             user_input = user_input + 6;
@@ -242,7 +244,7 @@ int _aliass(char *user_input)
             {
                     token = strtok(user_input," ");
                     printf("%s", token);
-                    int argc = 0;
+                    argc = 0;
                     while(token!=NULL){
                             argv[argc] = strdup(token);
                             token = strtok(NULL," ");
@@ -271,7 +273,7 @@ int _aliass(char *user_input)
                         }
             }
             x = 0;
-            int z = 0;
+            z = 0;
             if (g > 0)
             {
                 s = strtok(user_input,"='");
@@ -321,4 +323,5 @@ int _aliass(char *user_input)
             }
             return(0);
     }
+     return (0);
 }
