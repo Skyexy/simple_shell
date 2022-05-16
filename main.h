@@ -29,9 +29,9 @@ int (*func)(char **);
 
 int check(char *s);
 void comma(char *user_input);
-char **divd(char *user_input);
-char** ali(char **argv);
-char* exv(char **argv);
+int divd(char *user_input);
+int ali(char **argv);
+int exv(char **argv);
 void execute(char** argv);
 char *_getpath(void);
 int cd(char **argv);
