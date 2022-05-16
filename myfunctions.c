@@ -1,5 +1,17 @@
 #include "main.h"
 
+alias my_aliases[] = {
+{"ls", "ls --color=auto"},
+{"ll", "ls -alF"},
+{"la", "ls -A"},
+{NULL, NULL},
+};
+my_builtins builtins[] = {
+     {"exit", &_exi},
+     {"env", &env},
+     {"cd", &cd},
+     {NULL, NULL},
+};
 int comp(char **argv, char *sig)
 {
         char *token;
@@ -209,4 +221,104 @@ int check(char *s)
                 i++;
         }
         return(y);
+}
+
+int _aliass(char *user_input)
+{
+        if(strncmp(user_input, "alias ",6) == 0);
+        char *s = malloc(sizeof(char) * BUFFER_LEN);
+        char *y = malloc(sizeof(char) * BUFFER_LEN);
+        char *argv[BUFFER_LEN];
+        char *t = t = "'";
+        int x = 0;
+        int g;
+        int d = 0;
+        char *token;
+    if (strncmp(user_input, "alias ",6) == 0)
+    {
+            user_input = user_input + 6;
+            g = check(user_input, '=');
+            if (g == 0)
+            {
+                    token = strtok(user_input," ");
+                    printf("%s", token);
+                    int argc = 0;
+                    while(token!=NULL){
+                            argv[argc] = strdup(token);
+                            token = strtok(NULL," ");
+                            argc++;
+                    }
+                    argv[argc]=NULL;
+                    while (argv[d] != NULL)
+                        {
+                                x = 0;
+                                while (my_aliases[x].alias_name != NULL)
+                                {
+                                        if (strcmp(argv[d], my_aliases[x].alias_name) == 0)
+                                        {
+                                                s = my_aliases[x].alias_name;
+                                                y = my_aliases[x].real_name;
+                                                write(STDOUT_FILENO, s, strlen(s));
+                                                write(STDOUT_FILENO, "=", 1);
+                                                write(STDOUT_FILENO, t, strlen(t));
+                                                write(STDOUT_FILENO, y, strlen(y));
+                                                write(STDOUT_FILENO, t, strlen(t));
+                                                write(STDOUT_FILENO, "\n", 1);
+                                        }
+                                        x++;
+                                }
+                                d++;
+                        }
+            }
+            x = 0;
+            int z = 0;
+            if (g > 0)
+            {
+                s = strtok(user_input,"='");
+                printf("%s", s);
+                while (my_aliases[x].alias_name != NULL)
+                {
+                        x++;
+                }
+                while (my_aliases[z].alias_name != NULL)
+                {
+                        if (strcmp(s, my_aliases[z].alias_name) == 0)
+                        {
+                                my_aliases[x].alias_name = strdup(s);
+                                s = strtok(NULL,"'");
+                                my_aliases[x].real_name = strdup(s);
+                                printf("%s", s);
+                                x++;
+                                my_aliases[x].alias_name = NULL;
+                                my_aliases[x].real_name = NULL;
+                                return(0);
+                        }
+                        z++;
+                }
+                my_aliases[x].alias_name = strdup(s);
+                s = strtok(NULL,"'");
+                my_aliases[x].real_name = strdup(s);
+                printf("%s", s);
+                x++;
+                my_aliases[x].alias_name = NULL;
+                my_aliases[x].real_name = NULL;
+            }
+        return(0);
+    }
+    if (strcmp(user_input, "alias") == 0)
+    {
+            while (my_aliases[x].alias_name != NULL)
+            {
+                s = my_aliases[x].alias_name;
+                y = my_aliases[x].real_name;
+                write(STDOUT_FILENO, s, strlen(s));
+                write(STDOUT_FILENO, "=", 1);
+                write(STDOUT_FILENO, t, strlen(t));
+                write(STDOUT_FILENO, y, strlen(y));
+                write(STDOUT_FILENO, t, strlen(t));
+                write(STDOUT_FILENO, "\n", 1);
+                x++;
+            }
+            return(0);
+    }
 }
