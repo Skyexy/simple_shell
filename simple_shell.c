@@ -2,6 +2,7 @@
 
 int main(){
     char *user_input = malloc(sizeof(char) * BUFFER_LEN);
+    int argc;
     size_t buff;
     char c;
     int x;
@@ -15,9 +16,7 @@ int main(){
         {
                 break;
         }
-        
         length = strlen(user_input);
-
         if(length == 0){
             break;
         }
@@ -25,12 +24,16 @@ int main(){
         if (user_input[length - 1] == '\n'){
             user_input[length - 1] = '\0';
         }
-        x = check(user_input);
+        x = check(user_input, ';');
         if (x > 0)
         {
                 comma(user_input);
         }
-        
+        if(strncmp(user_input, "alias",5) == 0)
+        {
+                _aliass(user_input);
+                continue;
+        }
         divd(user_input);
     }
     return (0);
