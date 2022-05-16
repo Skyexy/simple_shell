@@ -1,13 +1,5 @@
 #include "main.h"
 
-#define BUFFER_LEN 1024
-
-my_builtins builtins[] = {
-     {"exit", &_exi},
-     {"env", &env},
-     {"cd", &cd},
-     {NULL, NULL},
-};
 int main(){
     char *user_input = malloc(sizeof(char) * BUFFER_LEN);
     size_t buff;
