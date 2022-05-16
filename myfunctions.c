@@ -1,17 +1,5 @@
 #include "main.h"
 
-my_builtins builtins[] = {
-     {"exit", &_exi},
-     {"env", &env},
-     {"cd", &cd},
-     {NULL, NULL},
-};
-alias my_aliases[] = {
-{"ls", "ls --color=auto"},
-{"ll", "ls -alF"},
-{"la", "ls -A"},
-{NULL, NULL},
-};
 int comp(char **argv, char *sig)
 {
         char *token;
