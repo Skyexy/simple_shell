@@ -2,7 +2,6 @@
 
 int main(){
     char *user_input = malloc(sizeof(char) * BUFFER_LEN);
-    int argc;
     size_t buff;
     char c;
     int x;
