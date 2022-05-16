@@ -156,7 +156,7 @@ int exv(char **argv)
     execute(argv);
     return (0);
 }
-char** ali(char **argv)
+int ali(char **argv)
 {
         char *user_input;
         int x = 0;
@@ -186,7 +186,7 @@ char** ali(char **argv)
                 argv[argc]=NULL;
         }
         exv(argv);
-        return (argv);
+        return (0);
 }
 int divd(char *user_input)
 {
