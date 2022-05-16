@@ -119,7 +119,7 @@ void execute(char** argv)
             write(STDOUT_FILENO, "Command is not available in the bin",35);
         }
 }
-char** exv(char **argv)
+char* exv(char **argv)
 {
     int x = 0;
     char *path = _getpath();
@@ -188,11 +188,12 @@ char** ali(char **argv)
         exv(argv);
         return (argv);
 }
-char **divd(char *user_input)
+char* divd(char *user_input)
 {
         int x = 0;
         char *token;
         int argc;
+        char *argv[BUFFER_LEN];
 
         while (my_aliases[x].alias_name != NULL)
         {
@@ -225,14 +226,13 @@ char **divd(char *user_input)
 void comma(char *user_input)
 {
         char *token;
-        int x = 0;
-        
+        char *argv[BUFFER_LEN];
         
         token = strtok(user_input,";");
         while(token != NULL)
         {
-                argv[0] = token;
-                divd(argv[x]);
+                argv[0] = strdup(token);
+                divd(argv[0]);
                 token = strtok(NULL,"; ");
         }
 }
