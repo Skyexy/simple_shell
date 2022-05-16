@@ -28,7 +28,7 @@ int _exi(char **argv __attribute__((unused)))
     int d = atoi(argv[1]);
     exit(d);
 }
-int env(char **argv)
+int env(char **argv __attribute__((unused)))
 {
     extern char **environ;
     char **env = environ;
