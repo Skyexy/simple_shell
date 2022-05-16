@@ -30,5 +30,6 @@ int cd(char **argv);
 int env(char **argv);
 int _exi(char **argv);
 int comp(char **argv, char *sig);
+int _aliass(char *user_input);
 
 #endif /* MAIN_H */
