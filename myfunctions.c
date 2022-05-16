@@ -4,7 +4,7 @@ int _exi(char **argv);
 int env(char **argv);
 int cd(char **argv);
 int _aliass(char *user_input);
-int check(char *s, char sign);
+int check(char *s);
 
 int comp(char **argv, char *sig)
 {
@@ -12,7 +12,8 @@ int comp(char **argv, char *sig)
         int x = 0;
         int y = 0;
         token = strtok(sig, " ");
-        while(token = NULL)
+ 
+        while(token != NULL)
         {
                 if (strcmp(token, argv[y]) == 0)
                 {
@@ -22,7 +23,7 @@ int comp(char **argv, char *sig)
         }
         return(x);
 }
-int _exi(char **argv)
+int _exi(char **argv __attribute__((unused)))
 {
     int d = atoi(argv[1]);
     exit(d);
@@ -79,8 +80,8 @@ char *_getpath(void)
     extern char **environ;
     char *path;
     int i = 0;
-    
-    while(*env)
+
+    while(*environ)
     {
         if(strncmp(*environ, "PATH=",5) == 0)
         {
