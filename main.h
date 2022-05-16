@@ -6,6 +6,7 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#define BUFFER_LEN 1024
 
 typedef struct aliases {
 char *alias_name;
