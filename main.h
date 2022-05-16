@@ -20,7 +20,6 @@ alias my_aliases[] = {
 {NULL, NULL},
 };
 
-
 int check(char *s);
 void comma(char *user_input);
 int divd(char *user_input);
