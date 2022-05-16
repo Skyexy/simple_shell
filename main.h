@@ -21,6 +21,17 @@ alias my_aliases[] = {
 };
 
 
+int check(char *s);
+void comma(char *user_input);
+int divd(char *user_input);
+int ali(char **argv);
+int exv(char **argv);
+void execute(char** argv);
+char *_getpath(void);
+int cd(char **argv);
+int env(char **argv);
+int _exi(char **argv);
+int comp(char **argv, char *sig);
 typedef struct my_builtins
 {
 char *name;
@@ -33,17 +44,5 @@ my_builtins builtins[] = {
      {"cd", &cd},
      {NULL, NULL},
 };
-
-int check(char *s);
-void comma(char *user_input);
-int divd(char *user_input);
-int ali(char **argv);
-int exv(char **argv);
-void execute(char** argv);
-char *_getpath(void);
-int cd(char **argv);
-int env(char **argv);
-int _exi(char **argv);
-int comp(char **argv, char *sig);
 
 #endif /* MAIN_H */
