@@ -65,10 +65,6 @@ int cd(char **argv)
     }
     return(0);
 }
-void _alias()
-{
-    
-}
 char *_getpath(void)
 {
     extern char **environ;
@@ -150,38 +146,6 @@ int exv(char **argv)
     }
     execute(argv);
     return (0);
-}
-int ali(char **argv)
-{
-        char *user_input;
-        int x = 0;
-        int y;
-        char *token;
-        int argc;
-
-        while (my_aliases[x].alias_name != NULL)
-        {
-                if (comp(argv, my_aliases[x].alias_name) != 0)
-                {
-                        user_input = strdup(my_aliases[x].real_name);
-                        y++;
-                }
-                x++;
-        }
-        if (y > 0)
-        {
-                token = strtok(user_input," ");
-                argc = 0;
-                while(token!=NULL)
-                {
-                        argv[argc] = token;
-                        token = strtok(NULL," ");
-                        argc++;
-                }
-                argv[argc]=NULL;
-        }
-        exv(argv);
-        return (0);
 }
 int divd(char *user_input)
 {
