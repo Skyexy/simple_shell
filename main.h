@@ -13,11 +13,11 @@ char *alias_name;
 char *real_name;
 } alias;
 
-my_builtins builtins[] = {
-     {"exit", &_exi},
-     {"env", &env},
-     {"cd", &cd},
-     {NULL, NULL},
+alias my_aliases[] = {
+{"ls", "ls --color=auto"},
+{"ll", "ls -alF"},
+{"la", "ls -A"},
+{NULL, NULL},
 };
 int check(char *s);
 void comma(char *user_input);
@@ -36,11 +36,10 @@ char *name;
 int (*func)(char **);
 } my_builtins;
 
-alias my_aliases[] = {
-{"ls", "ls --color=auto"},
-{"ll", "ls -alF"},
-{"la", "ls -A"},
-{NULL, NULL},
+my_builtins builtins[] = {
+     {"exit", &_exi},
+     {"env", &env},
+     {"cd", &cd},
+     {NULL, NULL},
 };
-
 #endif /* MAIN_H */
