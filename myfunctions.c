@@ -119,7 +119,7 @@ void execute(char** argv)
             write(STDOUT_FILENO, "Command is not available in the bin",35);
         }
 }
-char* exv(char **argv)
+char** exv(char **argv)
 {
     int x = 0;
     char *path = _getpath();
@@ -152,6 +152,7 @@ char* exv(char **argv)
             x++;
         }
         chdir(cwd);
+        return (argv);
     }
     execute(argv);
 }
@@ -161,6 +162,7 @@ char** ali(char **argv)
         int x = 0;
         int y;
         char *token;
+        int argc;
 
         while (my_aliases[x].alias_name != NULL)
         {
@@ -174,7 +176,7 @@ char** ali(char **argv)
         if (y > 0)
         {
                 token = strtok(user_input," ");
-                int argc = 0;
+                argc = 0;
                 while(token!=NULL)
                 {
                         argv[argc] = token;
@@ -184,13 +186,14 @@ char** ali(char **argv)
                 argv[argc]=NULL;
         }
         exv(argv);
-        
+        return (argv);
 }
 char **divd(char *user_input)
 {
         int x = 0;
         char *token;
-        char *argv[BUFFER_LEN];
+        int argc;
+
         while (my_aliases[x].alias_name != NULL)
         {
                 if (strcmp(user_input, my_aliases[x].alias_name) == 0)
@@ -200,7 +203,7 @@ char **divd(char *user_input)
                 x++;
         }
         token = strtok(user_input," ");
-        int argc = 0;
+        argc = 0;
         while(token!=NULL){
             argv[argc] = strdup(token);
             token = strtok(NULL," ");
@@ -208,20 +211,20 @@ char **divd(char *user_input)
         }
         argv[argc]=NULL;
         x = 0;
-        while (builtins[x].name != NULL)
+        while (my_builtins[x].name != NULL)
         {
-                if (strcmp(argv[0], builtins[x].name) == 0)
+                if (strcmp(argv[0], my_builtins[x].name) == 0)
                 {
                         builtins[x].func(argv);
                 }
                 x++;
         }
         exv(argv);
+        return (argv);
 }
 void comma(char *user_input)
 {
         char *token;
-        char *argv[BUFFER_LEN];
         int x = 0;
         
         
