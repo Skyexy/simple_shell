@@ -119,7 +119,7 @@ void execute(char** argv)
             write(STDOUT_FILENO, "Command is not available in the bin",35);
         }
 }
-char* exv(char **argv)
+int exv(char **argv)
 {
     int x = 0;
     char *path = _getpath();
@@ -152,9 +152,9 @@ char* exv(char **argv)
             x++;
         }
         chdir(cwd);
-        return (argv);
     }
     execute(argv);
+    return (0);
 }
 char** ali(char **argv)
 {
@@ -188,7 +188,7 @@ char** ali(char **argv)
         exv(argv);
         return (argv);
 }
-char* divd(char *user_input)
+int divd(char *user_input)
 {
         int x = 0;
         char *token;
@@ -212,16 +212,16 @@ char* divd(char *user_input)
         }
         argv[argc]=NULL;
         x = 0;
-        while (my_builtins[x].name != NULL)
+        while (builtins[x].name != NULL)
         {
-                if (strcmp(argv[0], my_builtins[x].name) == 0)
+                if (strcmp(argv[0], builtins[x].name) == 0)
                 {
                         builtins[x].func(argv);
                 }
                 x++;
         }
         exv(argv);
-        return (argv);
+        return (0);
 }
 void comma(char *user_input)
 {
