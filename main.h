@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/wait.h>
-#define BUFFER_LEN 1024
+#include <sys/stat.h>
 
 typedef struct aliases {
 char *alias_name;
@@ -19,18 +19,12 @@ alias my_aliases[] = {
 {NULL, NULL},
 };
 
+
 typedef struct my_builtins
 {
 char *name;
 int (*func)(char **);
 } my_builtins;
-
-my_builtins builtins[] = {
-     {"exit", &_exi},
-     {"env", &env},
-     {"cd", &cd},
-     {NULL, NULL},
-};
 
 int check(char *s);
 void comma(char *user_input);
