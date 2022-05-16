@@ -4,12 +4,10 @@
 
 int main(){
     char *user_input = malloc(sizeof(char) * BUFFER_LEN);
-    char *argv[BUFFER_LEN];
-    int argc;
     size_t buff;
     char c;
     int x;
-    char *token = NULL;
+    size_t length;
 
     while(c != EOF){
         
@@ -20,7 +18,7 @@ int main(){
                 break;
         }
         
-        size_t length = strlen(user_input);
+        length = strlen(user_input);
 
         if(length == 0){
             break;
