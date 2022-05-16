@@ -19,7 +19,7 @@ char *name;
 int (*func)(char **);
 } my_builtins;
 
-int check(char *s);
+int check(char *s, char sign);
 void comma(char *user_input);
 int divd(char *user_input);
 int ali(char **argv);
