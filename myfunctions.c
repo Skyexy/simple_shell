@@ -207,14 +207,14 @@ void comma(char *user_input)
                 token = strtok(NULL,"; ");
         }
 }
-int check(char *s)
+int check(char *s, char sign)
 {
         int i = 0;
         int y = 0;
         
         while(s[i] != '\0')
         {
-                if(s[i] == ';')
+                if(s[i] == sign)
                 {
                         y++;
                 }
