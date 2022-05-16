@@ -1,5 +1,11 @@
 #include "main.h"
 
+int _exi(char **argv);
+int env(char **argv);
+int cd(char **argv);
+int _aliass(char *user_input);
+int check(char *s, char sign);
+
 int comp(char **argv, char *sig)
 {
         char *token;
