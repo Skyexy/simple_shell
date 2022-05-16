@@ -27,6 +27,13 @@ char *name;
 int (*func)(char **);
 } my_builtins;
 
+my_builtins builtins[] = {
+     {"exit", &_exi},
+     {"env", &env},
+     {"cd", &cd},
+     {NULL, NULL},
+};
+
 int check(char *s);
 void comma(char *user_input);
 int divd(char *user_input);
