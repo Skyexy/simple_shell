@@ -205,18 +205,27 @@ int divd(char *user_input)
         exv(argv);
         return (0);
 }
-void comma(char *user_input)
+int comma(char *user_input)
 {
         char *token;
         char *argv[BUFFER_LEN];
-        
+        int x = 0;
+
         token = strtok(user_input,";");
         while(token != NULL)
         {
-                argv[0] = strdup(token);
-                divd(argv[0]);
-                token = strtok(NULL,"; ");
+                argv[x] = strdup(token);
+                token = strtok(NULL,";");
+                x++;
         }
+        argv[x] = NULL;
+        x = 0;
+        while(argv[x] != NULL)
+        {
+                divd(argv[x]);
+                x++;
+        }
+        return (0);
 }
 int check(char *s, char sign)
 {
