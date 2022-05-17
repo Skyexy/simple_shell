@@ -50,14 +50,27 @@ int env(char **argv __attribute__((unused)))
 }
 int cd(char **argv)
 {
-    char *path = argv[1];
-    char me[BUFFER_LEN];
-    char *cwd = getcwd(me, BUFFER_LEN);
-    char *dir;
-    char *to;
-    if (path == NULL)
+        extern char **environ;
+        char *path;
+        int i = 0;
+
+        while(*environ)
+        {
+                if(strncmp(*environ, "HOME",4) == 0)
+                {
+                        path = strdup(*environ);
+                        while(*path && i < 4)
+                        {
+                                path++;
+                                i++;
+                        }
+                        break;
+                }
+                environ++;
+        }
+    if (argv[1] == NULL)
     {
-        chdir(cwd);
+        chdir(path);
         return (0);
     }
     else if (strcmp("-",argv[1]) == 0)
@@ -67,9 +80,7 @@ int cd(char **argv)
     }
     else
     {
-        dir = strcat(cwd, "/");
-        to = strcat(dir, path);
-        if (chdir(to) == -1)
+        if (chdir(argv[1]) == -1)
         {
             perror("Error");
             return (-1);
@@ -286,13 +297,11 @@ int _aliass(char *user_input)
                 {
                         if (strcmp(s, my_aliases[z].alias_name) == 0)
                         {
-                                my_aliases[x].alias_name = strdup(s);
+                                my_aliases[z].alias_name = strdup(s);
                                 s = strtok(NULL,"'");
-                                my_aliases[x].real_name = strdup(s);
+                                my_aliases[z].real_name = strdup(s);
                                 printf("%s", s);
                                 x++;
-                                my_aliases[x].alias_name = NULL;
-                                my_aliases[x].real_name = NULL;
                                 return(0);
                         }
                         z++;
