@@ -110,7 +110,7 @@ char *_getpath(void)
     }
     return (NULL);
 }
-void execute(char** argv)
+int execute(char** argv)
 {
     if (access(argv[0],F_OK)==0){
         
@@ -128,9 +128,11 @@ void execute(char** argv)
                 {
                         wait(NULL);
                 }
+                return(0);
         }
         else {
-            write(STDOUT_FILENO, "Command is not available in the bin",35);
+            write(STDOUT_FILENO, "Command is not available in the bin\n",36);
+            return (1);
         }
 }
 int exv(char **argv)
@@ -167,16 +169,20 @@ int exv(char **argv)
         }
         chdir(cwd);
     }
-    execute(argv);
-    return (0);
+    x = execute(argv);
+    return(x);
 }
 int divd(char *user_input)
 {
         int x = 0;
         char *token;
-        int argc;
         char *argv[BUFFER_LEN];
 
+        if(strncmp(user_input, "alias",5) == 0)
+        {
+                _aliass(user_input);
+                return (0);
+        }
         while (my_aliases[x].alias_name != NULL)
         {
                 if (strcmp(user_input, my_aliases[x].alias_name) == 0)
@@ -186,7 +192,7 @@ int divd(char *user_input)
                 x++;
         }
         token = strtok(user_input," ");
-        argc = 0;
+        int argc = 0;
         while(token!=NULL){
             argv[argc] = strdup(token);
             token = strtok(NULL," ");
@@ -202,8 +208,8 @@ int divd(char *user_input)
                 }
                 x++;
         }
-        exv(argv);
-        return (0);
+        x = exv(argv);
+        return(x);
 }
 int comma(char *user_input)
 {
@@ -342,4 +348,115 @@ int _aliass(char *user_input)
             return(0);
     }
      return (0);
+}
+int join(char *user_input)
+{
+        char *token;
+        char *argv[BUFFER_LEN];
+        int x = 0;
+        int y = 0;
+
+        token = strtok(user_input,"&");
+        while(token != NULL)
+        {
+                argv[x] = strdup(token);
+                token = strtok(NULL,"&");
+                x++;
+        }
+        argv[x] = NULL;
+        x = 0;
+        while(argv[x] != NULL && y == 0)
+        {
+                y = divd(argv[x]);
+                x++;
+        }
+        return (0);
+}
+int phars(char *user_input)
+{
+        char *token;
+        char *argv[BUFFER_LEN];
+        int x = 0;
+        int y = 1;
+
+        token = strtok(user_input,"||");
+        while(token != NULL)
+        {
+                argv[x] = strdup(token);
+                token = strtok(NULL,"||");
+                x++;
+        }
+        argv[x] = NULL;
+        x = 0;
+        while(argv[x] != NULL && y == 1)
+        {
+                y = divd(argv[x]);
+                x++;
+        }
+        return (0);
+}
+int cont(char *userinput, char s)
+{
+        char *path = strdup(userinput);
+        int x = 0;
+        int y = 0;
+        int c = 0;
+        
+        while(path[x] != '\0')
+        {
+                if (path[x] == s && path[x+1] == s)
+                {
+                        x = x + 2;
+                        y++;
+                        if(path[x] == s)
+                        {
+                                while(path[x] == s)
+                                {
+                                        x++;
+                                        c--;
+                                }
+                                return(c);
+                        }
+                }
+                x++;
+        }
+        return (x);
+}
+int seprators(char *user_input)
+{
+        int x;
+
+        x = check(user_input, ';');
+        if (x > 0)
+        {
+                comma(user_input);
+                return (1);
+        }
+        x = cont(user_input, '&');
+        if (x != 0)
+        {
+                if (x > 0)
+                {
+                        join(user_input);
+                }
+                else
+                {
+                        perror("Error");
+                }
+                return (1);
+        }
+        x = cont(user_input, '|');
+        if (x != 0)
+        {
+                if (x > 0)
+                {
+                        phars(user_input);
+                }
+                else
+                {
+                        perror("Error");
+                }
+                return (1);
+        }
+        return(0);
 }
