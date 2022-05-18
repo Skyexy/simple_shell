@@ -8,11 +8,11 @@
 #include <sys/stat.h>
 #define BUFFER_LEN 1024
 
-typedef struct aliases {
+typedef struct aliases
+{
 char *alias_name;
 char *real_name;
 } alias;
-
 typedef struct my_builtins
 {
 char *name;
@@ -24,7 +24,7 @@ int comma(char *user_input);
 int divd(char *user_input);
 int ali(char **argv);
 int exv(char **argv);
-int execute(char** argv);
+int execute(char **argv);
 char *_getpath(void);
 int cd(char **argv);
 int env(char **argv);
