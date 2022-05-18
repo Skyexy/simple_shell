@@ -1,20 +1,21 @@
 #include "main.h"
 
-int main()
+int main(void)
 {
-        char *user_input = malloc(sizeof(char) * BUFFER_LEN);
-        size_t buff;
+	char *user_input = malloc(sizeof(char) * BUFFER_LEN);
+	size_t buff;
 	size_t length;
 	char c;
 
-	while(c != EOF)
-{
+	while (c != EOF)
+	{
 		write(STDOUT_FILENO, "($) ", 4);
-		if ((c = getline(&user_input,&buff, stdin)) == EOF)
+		c = getline(&user_input, &buff, stdin);
+		if (c == EOF)
 		{
 			break;
 		}
-		length = strlen(user_input);
+		length = strlen (user_input);
 		if(length == 0)
 		{
 			break;
