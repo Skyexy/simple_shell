@@ -422,7 +422,7 @@ int cont(char *userinput, char s)
                 }
                 x++;
         }
-        return (x);
+        return (y);
 }
 int seprators(char *user_input)
 {
