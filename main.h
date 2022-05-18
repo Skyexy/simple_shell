@@ -36,5 +36,7 @@ int phars(char *user_input);
 int cont(char *userinput, char s);
 int seprators(char *user_input);
 char *_strcpy(char *dest, char *src);
+int coment(char *userinput);
+int _check(char *s, char sign);
 
 #endif /* MAIN_H */
