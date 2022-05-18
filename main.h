@@ -35,5 +35,6 @@ int join(char *user_input);
 int phars(char *user_input);
 int cont(char *userinput, char s);
 int seprators(char *user_input);
+char *_strcpy(char *dest, char *src);
 
 #endif /* MAIN_H */
