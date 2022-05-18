@@ -15,8 +15,8 @@ int main(void)
 		{
 			break;
 		}
-		length = strlen (user_input);
-		if(length == 0)
+		length = strlen(user_input);
+		if (length == 0)
 		{
 			break;
 		}
