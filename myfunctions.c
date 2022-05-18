@@ -164,10 +164,9 @@ int exv(char **argv)
 		chdir(dirs[x]);
 		if (stat(argv[0], &sb) == 0)
 		{
-		    strcat(dirs[x],"/");
-		    argv[0] = strcat(dirs[x], argv[0]);
-		    printf("%s", argv[0]);
-		    break;
+			strcat(dirs[x],"/");
+			argv[0] = strcat(dirs[x], argv[0]);
+			break;
 		}
 		x++;
 	}
