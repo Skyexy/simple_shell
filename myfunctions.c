@@ -177,8 +177,10 @@ int divd(char *user_input)
         int x = 0;
         char *token;
         char *argv[BUFFER_LEN];
+	int argc = 0;
+     
 
-        if(strncmp(user_input, "alias",5) == 0)
+       if(strncmp(user_input, "alias",5) == 0)
         {
                 _aliass(user_input);
                 return (0);
@@ -192,7 +194,7 @@ int divd(char *user_input)
                 x++;
         }
         token = strtok(user_input," ");
-        int argc = 0;
+	argc = 0;
         while(token!=NULL){
             argv[argc] = strdup(token);
             token = strtok(NULL," ");
