@@ -4,7 +4,6 @@ int main(){
 	char *user_input = malloc(sizeof(char) * BUFFER_LEN);
 	size_t buff;
 	char c;
-	int x;
 	size_t length;
 
 	while(c != EOF)
@@ -16,7 +15,7 @@ int main(){
 			break;
 		}
         
-		size_t length = strlen(user_input);
+		length = strlen(user_input);
 
 		if(length == 0)
 		{
@@ -26,7 +25,7 @@ int main(){
 		{
 			user_input[length - 1] = '\0';
 		}
-		if (x = seprators(user_input) == 1)
+		if (seprators(user_input) == 1)
 		{
 			continue;
 		}
