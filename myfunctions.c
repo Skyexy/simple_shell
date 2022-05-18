@@ -428,10 +428,17 @@ int seprators(char *user_input)
 {
         int x;
 
-        x = check(user_input, ';');
-        if (x > 0)
+        x = _check(user_input, ';');
+        if (x != 0)
         {
-                comma(user_input);
+                if (x > 0)
+                {
+                        comma(user_input);
+                }
+                else
+                {
+                        perror("Error");
+                }
                 return (1);
         }
         x = cont(user_input, '&');
@@ -460,5 +467,43 @@ int seprators(char *user_input)
                 }
                 return (1);
         }
+        x = check(user_input, '#');
+        if (x > 0)
+        {
+                coment(user_input);
+                return (1);
+        }
         return(0);
+}
+int _check(char *s, char sign)
+{
+        int i = 0;
+        int y = 0;
+        
+        while(s[i] != '\0')
+        {
+                if(s[i] == sign)
+                {
+                        i++;
+                        y++;
+                        if (s[i] == sign)
+                        {
+                                i++;
+                                return(-1);
+                        }
+                }
+                i++;
+        }
+        return(y);
+}
+int coment(char *userinput)
+{
+        char *token;
+        
+        token = strtok(userinput,"#");
+        if (token != NULL)
+        {
+                divd(token);
+        }
+        return (0);
 }
